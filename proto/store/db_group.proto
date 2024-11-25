@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package devsecdb.store;
+
+option go_package = "generated-go/store";
+
+message DatabaseGroupPayload {
+  bool multitenancy = 1;
+}

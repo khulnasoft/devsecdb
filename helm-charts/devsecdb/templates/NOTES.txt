@@ -1,0 +1,6 @@
+***********************************************************************
+ Welcome to use devsecdb
+ Chart version: {{ .Chart.Version }}
+***********************************************************************
+
+The devsecdb is starting, use `kubectl get statefulset devsecdb -n {{ .Release.Namespace }}` to check status.

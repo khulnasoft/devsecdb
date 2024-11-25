@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package devsecdb.v1;
+
+import "google/api/annotations.proto";
+import "v1/annotation.proto";
+import "v1/iam_policy.proto";
+
+option go_package = "generated-go/v1";
+
+service WorkspaceService {
+  rpc GetIamPolicy(GetIamPolicyRequest) returns (IamPolicy) {
+    option (google.api.http) = {get: "/v1/{resource=workspaces/*}:getIamPolicy"};
+    option (devsecdb.v1.permission) = "bb.policies.get";
+    option (devsecdb.v1.auth_method) = IAM;
+  }
+
+  rpc SetIamPolicy(SetIamPolicyRequest) returns (IamPolicy) {
+    option (google.api.http) = {
+      post: "/v1/{resource=workspaces/*}:setIamPolicy"
+      body: "*"
+    };
+    option (devsecdb.v1.permission) = "bb.policies.update";
+    option (devsecdb.v1.auth_method) = IAM;
+    option (devsecdb.v1.audit) = true;
+  }
+}

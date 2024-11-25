@@ -1,0 +1,20 @@
+# Default
+*                            @d-devsecdb @khulnasoft/devsecdb-dev
+
+# API and schema
+proto                        @d-devsecdb @ecmadao @RainbowDashy
+backend/migrator/migration   @d-devsecdb @ecmadao @RainbowDashy
+
+# Backend
+backend                      @d-devsecdb @ecmadao @khulnasoft/devsecdb-dev
+go.mod                       @d-devsecdb @ecmadao @khulnasoft/devsecdb-dev
+
+# Database
+backend/plugin/advisor       @rebelice @h3n4l @khulnasoft/devsecdb-dev
+backend/plugin/db            @rebelice @h3n4l @khulnasoft/devsecdb-dev
+backend/plugin/parser        @rebelice @h3n4l @khulnasoft/devsecdb-dev
+backend/plugin/schema        @rebelice @h3n4l @khulnasoft/devsecdb-dev
+
+# Frontend
+frontend                     @LiuJi-Jim @boojack @khulnasoft/devsecdb-dev
+frontend/package.json        @LiuJi-Jim @boojack @khulnasoft/devsecdb-dev

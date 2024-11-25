@@ -1,0 +1,12 @@
+apiVersion: v2
+name: devsecdb
+version: 1.1.1
+description: Safe database schema change and version control for DevOps teams.
+type: application
+home: https://secdb.khulnasoft.com/
+sources:
+  - https://github.com/khulnasoft/devsecdb
+icon: https://raw.githubusercontent.com/khulnasoft/secdb.khulnasoft.com/main/public/images/logo.svg
+maintainers:
+  - name: Devsecdb
+    email: support@secdb.khulnasoft.com

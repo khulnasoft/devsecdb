@@ -1,0 +1,13 @@
+- stmt: create schema myschema authorization devsecdb create table tbl(id INT);
+  want: |-
+    CREATE SCHEMA "myschema" AUTHORIZATION "devsecdb" CREATE TABLE "tbl" (
+        "id" integer
+    );
+- stmt: create schema if not exists myschema authorization devsecdb;
+  want: CREATE SCHEMA IF NOT EXISTS "myschema" AUTHORIZATION "devsecdb";
+- stmt: create schema if not exists myschema
+  want: CREATE SCHEMA IF NOT EXISTS "myschema";
+- stmt: create schema if not exists "myschema" authorization devsecdb
+  want: CREATE SCHEMA IF NOT EXISTS "myschema" AUTHORIZATION "devsecdb";
+- stmt: create schema if not exists authorization devsecdb
+  want: CREATE SCHEMA IF NOT EXISTS AUTHORIZATION "devsecdb";

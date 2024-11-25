@@ -1,0 +1,3 @@
+ALTER TABLE sheet DROP CONSTRAINT sheet_source_check;
+
+ALTER TABLE sheet ADD CONSTRAINT sheet_source_check CHECK (source IN ('DEVSECDB', 'GITLAB', 'GITHUB', 'BITBUCKET', 'DEVSECDB_ARTIFACT'));

@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  bb:
+    image: khulnasoft/devsecdb:${BB_VERSION}
+    init: true
+    container_name: devsecdb
+    restart: always
+    ports:
+      - 8080:8080
+    # # Uncomment the following lines to persist data
+    # volumes:
+    #   - ~/.devsecdb/data:/var/opt/devsecdb
+    command: ["--data", "/var/opt/devsecdb", "--port", "8080"]
+
+  mysql-db:
+    image: mysql
+    platform: linux/amd64
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 3306:3306
+    volumes:
+      - ./test_schema/mysql:/docker-entrypoint-initdb.d

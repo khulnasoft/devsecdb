@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  devsecdb:
+    image: khulnasoft/devsecdb:${BB_VERSION}
+    init: true
+    container_name: devsecdb
+    restart: always
+    ports:
+      - 5678:5678
+    # # Uncomment the following lines to persist data
+    # volumes:
+    #   - ~/.devsecdb/data:/var/opt/devsecdb
+    command: ["--data", "/var/opt/devsecdb", "--port", "5678"]
+
+  employee-prod:
+    image: devsecdb/sample-database:mysql-employee-small
+    ports:
+      - 3306:3306
+
+  employee-test:
+    image: devsecdb/sample-database:mysql-employee-small
+    ports:
+      - 3307:3306
