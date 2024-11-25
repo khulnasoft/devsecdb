@@ -156,8 +156,8 @@ importers:
         specifier: 7.6.3
         version: 7.6.3
       slug:
-        specifier: 9.1.0
-        version: 9.1.0
+        specifier: 10.0.0
+        version: 10.0.0
       splitpanes:
         specifier: 3.1.5
         version: 3.1.5
@@ -3655,8 +3655,8 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
 
-  slug@9.1.0:
-    resolution: {integrity: sha512-ioOsCfzQSu+D6NZ8XMCR8IW9FgvF8W7Xzz56hBkB/ALvNaWeBs2MUvvPugq3GCrxfHPFeK6hAxGkY/WLnfX2Lg==}
+  slug@10.0.0:
+    resolution: {integrity: sha512-M8s2PWOUeSCdD4S1NH5lCzXg2zFV1fozrtfr0FSKl65x+EF1rUowj+/vyFlnHgxPxWzT+DL0VXKfYc1DHJoymg==}
     hasBin: true
 
   sortablejs@1.14.0:
@@ -7936,7 +7936,7 @@ snapshots:
 
   slash@3.0.0: {}
 
-  slug@9.1.0: {}
+  slug@10.0.0: {}
 
   sortablejs@1.14.0: {}
 
