@@ -87,8 +87,8 @@ importers:
         specifier: 4.17.21
         version: 4.17.21
       lucide-static:
-        specifier: ^0.447.0
-        version: 0.447.0
+        specifier: ^0.460.0
+        version: 0.460.0
       lucide-vue-next:
         specifier: ^0.447.0
         version: 0.447.0(vue@3.4.32(typescript@5.5.4))
@@ -2911,8 +2911,8 @@ packages:
   ltgt@2.2.1:
     resolution: {integrity: sha512-AI2r85+4MquTw9ZYqabu4nMwy9Oftlfa/e/52t9IjtfG+mGBbTNdAoZ3RQKLHR6r0wQnwZnPIEh/Ya6XTWAKNA==}
 
-  lucide-static@0.447.0:
-    resolution: {integrity: sha512-6QcrGIs8sgQn5DzQzLjBtV8mLh0WeYZo31SK2xt58vygpUtYRUmtZ+e+/Lan3K49ZNE40VFV+oqYNhpTULrqJA==}
+  lucide-static@0.460.0:
+    resolution: {integrity: sha512-X6pIdg7jVxv7YQ/uR241hwhNiztcAfmj181TbcX7HCxxk/3mGaRtAc6b2ftUvQBufbJE6ehgyzO2uVsa604tWg==}
 
   lucide-vue-next@0.447.0:
     resolution: {integrity: sha512-NXD61EHwgdIHZsVxFGYHowrPZnhWJOByVJ23LJB28BnXII29Cg157DmIbvrJ7idwbfhwYhCZ2moRfKOCwIvNiw==}
@@ -6976,7 +6976,7 @@ snapshots:
 
   ltgt@2.2.1: {}
 
-  lucide-static@0.447.0: {}
+  lucide-static@0.460.0: {}
 
   lucide-vue-next@0.447.0(vue@3.4.32(typescript@5.5.4)):
     dependencies:
