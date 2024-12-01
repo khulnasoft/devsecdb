@@ -87,8 +87,8 @@ importers:
         specifier: 4.17.21
         version: 4.17.21
       lucide-static:
-        specifier: ^0.447.0
-        version: 0.447.0
+        specifier: ^0.462.0
+        version: 0.462.0
       lucide-vue-next:
         specifier: ^0.447.0
         version: 0.447.0(vue@3.4.32(typescript@5.5.4))
@@ -1673,14 +1673,17 @@ packages:
   abstract-leveldown@6.2.3:
     resolution: {integrity: sha512-BsLm5vFMRUrrLeCcRc+G0t2qOaTzpoJQLOubq2XM72eNpjF5UdU5o/5NvlNhx95XHcAvcl8OMXr4mlg/fRgUXQ==}
     engines: {node: '>=6'}
+    deprecated: Superseded by abstract-level (https://github.com/Level/community#faq)
 
   abstract-leveldown@6.3.0:
     resolution: {integrity: sha512-TU5nlYgta8YrBMNpc9FwQzRbiXsj49gsALsXadbGHt9CROPzX5fB0rWDR5mtdpOOKa5XqRFpbj1QroPAoPzVjQ==}
     engines: {node: '>=6'}
+    deprecated: Superseded by abstract-level (https://github.com/Level/community#faq)
 
   abstract-leveldown@7.2.0:
     resolution: {integrity: sha512-DnhQwcFEaYsvYDnACLZhMmCWd3rkOeEvglpa4q5i/5Jlm3UIsWaxVzuXvDLFCSCWRO3yy2/+V/G7FusFgejnfQ==}
     engines: {node: '>=10'}
+    deprecated: Superseded by abstract-level (https://github.com/Level/community#faq)
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2836,14 +2839,17 @@ packages:
   leveldown@5.6.0:
     resolution: {integrity: sha512-iB8O/7Db9lPaITU1aA2txU/cBEXAt4vWwKQRrrWuS6XDgbP4QZGj9BL2aNbwb002atoQ/lIotJkfyzz+ygQnUQ==}
     engines: {node: '>=8.6.0'}
+    deprecated: Superseded by classic-level (https://github.com/Level/community#faq)
 
   leveldown@6.1.1:
     resolution: {integrity: sha512-88c+E+Eizn4CkQOBHwqlCJaTNEjGpaEIikn1S+cINc5E9HEvJ77bqY4JY/HxT5u0caWqsc3P3DcFIKBI1vHt+A==}
     engines: {node: '>=10.12.0'}
+    deprecated: Superseded by classic-level (https://github.com/Level/community#faq)
 
   levelup@4.4.0:
     resolution: {integrity: sha512-94++VFO3qN95cM/d6eBXvd894oJE0w3cInq9USsyQzzoJxmiYzPAocNcuGCPGGjoXqDVJcr3C1jzt1TSjyaiLQ==}
     engines: {node: '>=6'}
+    deprecated: Superseded by abstract-level (https://github.com/Level/community#faq)
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -2911,8 +2917,8 @@ packages:
   ltgt@2.2.1:
     resolution: {integrity: sha512-AI2r85+4MquTw9ZYqabu4nMwy9Oftlfa/e/52t9IjtfG+mGBbTNdAoZ3RQKLHR6r0wQnwZnPIEh/Ya6XTWAKNA==}
 
-  lucide-static@0.447.0:
-    resolution: {integrity: sha512-6QcrGIs8sgQn5DzQzLjBtV8mLh0WeYZo31SK2xt58vygpUtYRUmtZ+e+/Lan3K49ZNE40VFV+oqYNhpTULrqJA==}
+  lucide-static@0.462.0:
+    resolution: {integrity: sha512-tAVmvvxha2IMSwB4Bu4obGYgupLlXRNooDWelyINkkkX6Be7orvarPUPOBenjHeyiW7Xk8/yYDbpo8o7FElWCQ==}
 
   lucide-vue-next@0.447.0:
     resolution: {integrity: sha512-NXD61EHwgdIHZsVxFGYHowrPZnhWJOByVJ23LJB28BnXII29Cg157DmIbvrJ7idwbfhwYhCZ2moRfKOCwIvNiw==}
@@ -6976,7 +6982,7 @@ snapshots:
 
   ltgt@2.2.1: {}
 
-  lucide-static@0.447.0: {}
+  lucide-static@0.462.0: {}
 
   lucide-vue-next@0.447.0(vue@3.4.32(typescript@5.5.4)):
     dependencies:
