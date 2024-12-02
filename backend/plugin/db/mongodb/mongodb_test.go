@@ -27,7 +27,7 @@ func TestGetMongoDBConnectionURL(t *testing.T) {
 				Password:             "",
 				MaximumSQLResultSize: common.DefaultMaximumSQLResultSize,
 			},
-			want: "mongodb://localhost:27017/?appName=devsecdb&authSource=admin",
+			want: "mongodb://localhost:27017/?appName=bytebase&authSource=admin",
 		},
 		{
 			connConfig: db.ConnectionConfig{
@@ -38,7 +38,7 @@ func TestGetMongoDBConnectionURL(t *testing.T) {
 				DirectConnection:     true,
 				MaximumSQLResultSize: common.DefaultMaximumSQLResultSize,
 			},
-			want: "mongodb://localhost:27017/?appName=devsecdb&authSource=admin&directConnection=true",
+			want: "mongodb://localhost:27017/?appName=bytebase&authSource=admin&directConnection=true",
 		},
 		{
 			connConfig: db.ConnectionConfig{
@@ -49,7 +49,7 @@ func TestGetMongoDBConnectionURL(t *testing.T) {
 				Database:             "sampleDB",
 				MaximumSQLResultSize: common.DefaultMaximumSQLResultSize,
 			},
-			want: "mongodb://localhost:27017/sampleDB?appName=devsecdb&authSource=admin",
+			want: "mongodb://localhost:27017/sampleDB?appName=bytebase&authSource=admin",
 		},
 		{
 			connConfig: db.ConnectionConfig{
@@ -60,7 +60,7 @@ func TestGetMongoDBConnectionURL(t *testing.T) {
 				SRV:                  true,
 				MaximumSQLResultSize: common.DefaultMaximumSQLResultSize,
 			},
-			want: "mongodb+srv://devsecdb:passwd@cluster0.sample.mongodb.net/sampleDB?appName=devsecdb&authSource=admin",
+			want: "mongodb+srv://bytebase:passwd@cluster0.sample.mongodb.net/sampleDB?appName=bytebase&authSource=admin",
 		},
 		{
 			connConfig: db.ConnectionConfig{
@@ -72,7 +72,7 @@ func TestGetMongoDBConnectionURL(t *testing.T) {
 				SRV:                    true,
 				MaximumSQLResultSize:   common.DefaultMaximumSQLResultSize,
 			},
-			want: "mongodb+srv://devsecdb:passwd@cluster0.sample.mongodb.net/sampleDB?appName=devsecdb&authSource=admin",
+			want: "mongodb+srv://bytebase:passwd@cluster0.sample.mongodb.net/sampleDB?appName=bytebase&authSource=admin",
 		},
 		{
 			connConfig: db.ConnectionConfig{
@@ -84,7 +84,7 @@ func TestGetMongoDBConnectionURL(t *testing.T) {
 				SRV:                    true,
 				MaximumSQLResultSize:   common.DefaultMaximumSQLResultSize,
 			},
-			want: "mongodb+srv://devsecdb:passwd@cluster0.sample.mongodb.net/sampleDB?appName=devsecdb&authSource=admin",
+			want: "mongodb+srv://bytebase:passwd@cluster0.sample.mongodb.net/sampleDB?appName=bytebase&authSource=admin",
 		},
 		{
 			connConfig: db.ConnectionConfig{
@@ -102,7 +102,7 @@ func TestGetMongoDBConnectionURL(t *testing.T) {
 				ReplicaSet:           "rs0",
 				MaximumSQLResultSize: common.DefaultMaximumSQLResultSize,
 			},
-			want: "mongodb://devsecdb:passwd@node1.cluster0.sample.mongodb.net:27017,node2.cluster0.sample.mongodb.net:27017,node3.cluster0.sample.mongodb.net:27017/sampleDB?appName=devsecdb&authSource=admin&replicaSet=rs0",
+			want: "mongodb://bytebase:passwd@node1.cluster0.sample.mongodb.net:27017,node2.cluster0.sample.mongodb.net:27017,node3.cluster0.sample.mongodb.net:27017/sampleDB?appName=bytebase&authSource=admin&replicaSet=rs0",
 		},
 	}
 

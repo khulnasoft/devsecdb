@@ -12,12 +12,12 @@ import (
 
 const (
 	// devsecdbDefaultDatabase is the default database name for devsecdb.
-	devsecdbDefaultDatabase = "devsecdb"
+	bytebaseDefaultDatabase = "devsecdb"
 )
 
 // getUserList returns the list of users.
 func (driver *Driver) getInstanceRoles(ctx context.Context) ([]*storepb.InstanceRole, error) {
-	database := driver.client.Database(devsecdbDefaultDatabase)
+	database := driver.client.Database(bytebaseDefaultDatabase)
 	command := bson.D{{
 		Key: "usersInfo",
 		Value: bson.D{{

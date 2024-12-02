@@ -83,7 +83,7 @@ import Button from "./Button.vue";
 const { showConnectionPanel, asidePanelTab } = useSQLEditorContext();
 const { itemList: settingItemList } = useSettingItems();
 const router = useRouter();
-const hideLogo = useAppFeature("bb.feature.sql-editor.hide-devsecdb-logo");
+const hideLogo = useAppFeature("bb.feature.sql-editor.hide-devsecdblogo");
 
 const showCreateInstanceButton = computed(() => {
   return (

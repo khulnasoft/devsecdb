@@ -275,7 +275,6 @@
     "permissions": "Permissions",
     "cutover": "Cutover",
     "baseline": "Baseline",
-    "project-member": "Project member",
     "leave-without-saving": "Leave without saving?",
     "configure-now": "Configure now",
     "connection": "Connection",
@@ -296,7 +295,8 @@
     "encoding": "Encoding",
     "finish": "Finish",
     "title": "Title",
-    "hide": "Hide"
+    "hide": "Hide",
+    "text-wrap": "Text wrap"
   },
   "error-page": {
     "go-back-home": "Go back home"
@@ -787,11 +787,11 @@
           "description": "Control how users perform database changes",
           "issue-mode": {
             "self": "Issue Mode (Governed)",
-            "description": "Use issue to request, review, roll out, and version database changes."
+            "description": "Use issue to request, review, roll out, and version database changes, suitable for teams with access control and CI & CD workflow."
           },
           "sql-editor-mode": {
             "self": "SQL Editor Mode (Direct)",
-            "description": "Use SQL Editor to execute database changes directly."
+            "description": "Use SQL Editor to execute database changes directly, suitable for single-person use or environments that do not require supervision."
           },
           "can-be-changed-later": "This setting can be changed anytime later.",
           "default-view-changed-to-sql-editor": "The workspace's default view has been changed to SQL Editor.",
@@ -966,6 +966,7 @@
     },
     "release": {
       "new-version-available": "New version is available",
+      "new-version-available-with-tag": "New version {tag} is available",
       "new-version-content": "The new version {tag} is available now! Please check our docs for installation.",
       "not-show-till-next-release": "Don't show this till next version"
     },
@@ -1006,9 +1007,6 @@
       "member-deactivate": "Deactivate member",
       "project-repository-push": "Repository push event",
       "project-database-transfer": "Database transfer",
-      "project-member-create": "Add project member",
-      "project-member-delete": "Delete project member",
-      "project-member-role-update": "Change project member role",
       "pipeline-task-earliest-allowed-time-update": "Update earliest allowed time",
       "database-recovery-pitr-done": "Restore database to point in time",
       "external-approval-rejected": "External approval rejected"
@@ -1429,7 +1427,28 @@
     "create": "Create database",
     "procedures": "Procedures",
     "partitions": "Partitions",
-    "packages": "Packages"
+    "packages": "Packages",
+    "sequences": "Sequences",
+    "sequence": {
+      "data-type": "Data type",
+      "start": "Start value",
+      "min-value": "Min value",
+      "max-value": "Max value",
+      "increment": "Increment",
+      "cycle": "Cycle",
+      "cacheSize": "Cache size",
+      "lastValue": "Last value"
+    },
+    "triggers": "Triggers",
+    "trigger": {
+      "body": "Body",
+      "timing": "Timing",
+      "event": "Event",
+      "table-name": "Table name"
+    },
+    "schema": {
+      "default": "Default"
+    }
   },
   "instance": {
     "select": "Select instance",
@@ -1478,7 +1497,7 @@
     "web-console": "Web Console",
     "connection-info": "Connection info",
     "show-how-to-create": "Show how to create",
-    "below-is-an-example-to-create-user-devsecdb-with-password": "Below is an example to create user 'devsecdb{'@'}%' with password",
+    "below-is-an-example-to-create-user-devsecdbwith-password": "Below is an example to create user 'bytebase{'@'}%' with password",
     "your_db_pwd": "YOUR_DB_PWD",
     "no-read-only-data-source-warn-for-admin-dba": "The instance has not configured read-only connection, please consider adding one.",
     "no-read-only-data-source-warn-for-developer": "The instance has not configured read-only connection, please ask your DBA to add one.",
@@ -1656,8 +1675,8 @@
     },
     "statement-execution": {
       "title": "Statement execution",
-      "allow-ddl": "Allow running DDL statements in the SQL editor",
-      "allow-dml": "Allow running data-modifying DML statements in the SQL Editor"
+      "disallow-ddl": "Disallow running DDL statements in the SQL editor",
+      "disallow-dml": "Disallow running data-modifying DML statements in the SQL Editor"
     }
   },
   "quick-start": {
@@ -1900,7 +1919,7 @@
         "duplicated-name": "Duplicated secret name",
         "name-is-required": "Secret name is required",
         "name-pattern-mismatch": "Secret name should contain only uppercase letters, digit, or _ (underscore)",
-        "name-cannot-prefix-with-devsecdb": "Secret name cannot prefix with 'DEVSECDB_'",
+        "name-cannot-prefix-with-bytebase": "Secret name cannot prefix with 'DEVSECDB_'",
         "name-cannot-start-with-number": "Secret name cannot start with number"
       },
       "description-placeholder": "Input description",
@@ -2108,7 +2127,6 @@
       "member-placeholder": "Select user",
       "manage-member": "Manage members",
       "owner": "@.upper:role.project-owner.self",
-      "developer": "@.upper:role.project-member.self",
       "archive": {
         "title": "Archive project",
         "description": "Archived projects will not be displayed.",
@@ -2206,12 +2224,6 @@
     },
     "db-name-template": "Tenant Database Name Template",
     "select": "Select Project",
-    "lgtm-check": {
-      "self": "LGTM check",
-      "disabled": "Skip LGTM check",
-      "project-member": "Require LGTM from project members",
-      "project-owner": "Require LGTM from project owner"
-    },
     "successfully-updated-db-name-template": "Successfully updated database name template.",
     "all": "All projects",
     "key-hint": "Short descriptive alphanumberic letters to identify this project.",
@@ -2529,7 +2541,14 @@
     "create-a-worksheet": "Create a new worksheet",
     "select-a-database-to-start": "Select a database to start",
     "select-encoding": "Select encoding",
+    "redis-command": {
+      "self": "Run redis command on",
+      "all-nodes": "All nodes",
+      "single-node": "Single node",
+      "only-for-cluster": "Only available for cluster connection"
+    },
     "result-limit": {
+      "self": "Result limit",
       "n-rows": "{n} rows",
       "rows": "rows"
     },
@@ -3129,7 +3148,7 @@
         "create-a-project": "Create a project",
         "create-an-issue": "Create an issue",
         "create-a-new-database": "Create a new database",
-        "keep-going-with-devsecdb": "Keep going with Devsecdb!"
+        "keep-going-with-bytebase": "Keep going with Devsecdb!"
       }
     }
   },
@@ -3358,7 +3377,7 @@
           "WORKSPACE_OWNER": "Workspace Admin",
           "WORKSPACE_DBA": "DBA",
           "PROJECT_OWNER": "Project Owner",
-          "PROJECT_MEMBER": "Project Member"
+          "PROJECT_MEMBER": "Project Developer"
         },
         "add": "Add node",
         "delete": "Delete approval node",
@@ -3510,9 +3529,6 @@
       "select": "Select classification",
       "search": "Search classification"
     }
-  },
-  "principal": {
-    "select": "Select user"
   },
   "role": {
     "self": "Role",
@@ -3861,5 +3877,15 @@
   },
   "setup": {
     "self": "Setup"
+  },
+  "landing": {
+    "quick-link": {
+      "self": "Quick Link",
+      "manage": "Manage quick link",
+      "visit-prjects": "Visit Projects",
+      "visit-issues": "Visit Issues"
+    },
+    "last-visit": "Last visit",
+    "changelog-for-version": "Changelog for {version}"
   }
 }

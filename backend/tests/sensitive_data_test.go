@@ -91,7 +91,7 @@ func TestSensitiveData(t *testing.T) {
 		`
 		insertData = `
 			INSERT INTO tech_book VALUES
-				(1, 'devsecdb', 'bber'),
+				(1, 'bytebase', 'bber'),
 				(2, 'PostgreSQL 14 Internals', 'Egor Rogov'),
 				(3, 'Designing Data-Intensive Applications', 'Martin Kleppmann');
 		`
@@ -123,7 +123,7 @@ func TestSensitiveData(t *testing.T) {
 
 	_, err = mysqlDB.Exec("DROP USER IF EXISTS devsecdb")
 	a.NoError(err)
-	_, err = mysqlDB.Exec("CREATE USER 'devsecdb' IDENTIFIED WITH mysql_native_password BY 'devsecdb'")
+	_, err = mysqlDB.Exec("CREATE USER 'bytebase' IDENTIFIED WITH mysql_native_password BY 'bytebase'")
 	a.NoError(err)
 
 	_, err = mysqlDB.Exec("GRANT ALTER, ALTER ROUTINE, CREATE, CREATE ROUTINE, CREATE VIEW, DELETE, DROP, EVENT, EXECUTE, INDEX, INSERT, PROCESS, REFERENCES, SELECT, SHOW DATABASES, SHOW VIEW, TRIGGER, UPDATE, USAGE, REPLICATION CLIENT, REPLICATION SLAVE, LOCK TABLES, RELOAD ON *.* to devsecdb")

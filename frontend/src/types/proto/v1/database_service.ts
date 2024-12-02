@@ -511,6 +511,19 @@ export interface SchemaMetadata {
   triggers: TriggerMetadata[];
   /** The sequences is the list of sequences in a schema, sorted by name. */
   sequences: SequenceMetadata[];
+  events: EventMetadata[];
+}
+
+export interface EventMetadata {
+  /** The name of the event. */
+  name: string;
+  /** The schedule of the event. */
+  definition: string;
+  /** The time zone of the event. */
+  timeZone: string;
+  sqlMode: string;
+  characterSetClient: string;
+  collationConnection: string;
 }
 
 export interface SequenceMetadata {
@@ -1929,6 +1942,7 @@ export interface ListRevisionsRequest {
    * match the call that provided the page token.
    */
   pageToken: string;
+  showDeleted: boolean;
 }
 
 export interface ListRevisionsResponse {
@@ -1974,6 +1988,15 @@ export interface Revision {
   /** Format: users/hello@world.com */
   creator: string;
   createTime:
+    | Timestamp
+    | undefined;
+  /**
+   * Format: users/hello@world.com
+   * Can be empty.
+   */
+  deleter: string;
+  /** Can be empty. */
+  deleteTime:
     | Timestamp
     | undefined;
   /**
@@ -3792,6 +3815,7 @@ function createBaseSchemaMetadata(): SchemaMetadata {
     owner: "",
     triggers: [],
     sequences: [],
+    events: [],
   };
 }
 
@@ -3835,6 +3859,9 @@ export const SchemaMetadata: MessageFns<SchemaMetadata> = {
     }
     for (const v of message.sequences) {
       SequenceMetadata.encode(v!, writer.uint32(106).fork()).join();
+    }
+    for (const v of message.events) {
+      EventMetadata.encode(v!, writer.uint32(114).fork()).join();
     }
     return writer;
   },
@@ -3937,6 +3964,13 @@ export const SchemaMetadata: MessageFns<SchemaMetadata> = {
 
           message.sequences.push(SequenceMetadata.decode(reader, reader.uint32()));
           continue;
+        case 14:
+          if (tag !== 114) {
+            break;
+          }
+
+          message.events.push(EventMetadata.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -3976,6 +4010,9 @@ export const SchemaMetadata: MessageFns<SchemaMetadata> = {
         : [],
       sequences: globalThis.Array.isArray(object?.sequences)
         ? object.sequences.map((e: any) => SequenceMetadata.fromJSON(e))
+        : [],
+      events: globalThis.Array.isArray(object?.events)
+        ? object.events.map((e: any) => EventMetadata.fromJSON(e))
         : [],
     };
   },
@@ -4021,6 +4058,9 @@ export const SchemaMetadata: MessageFns<SchemaMetadata> = {
     if (message.sequences?.length) {
       obj.sequences = message.sequences.map((e) => SequenceMetadata.toJSON(e));
     }
+    if (message.events?.length) {
+      obj.events = message.events.map((e) => EventMetadata.toJSON(e));
+    }
     return obj;
   },
 
@@ -4042,6 +4082,141 @@ export const SchemaMetadata: MessageFns<SchemaMetadata> = {
     message.owner = object.owner ?? "";
     message.triggers = object.triggers?.map((e) => TriggerMetadata.fromPartial(e)) || [];
     message.sequences = object.sequences?.map((e) => SequenceMetadata.fromPartial(e)) || [];
+    message.events = object.events?.map((e) => EventMetadata.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseEventMetadata(): EventMetadata {
+  return { name: "", definition: "", timeZone: "", sqlMode: "", characterSetClient: "", collationConnection: "" };
+}
+
+export const EventMetadata: MessageFns<EventMetadata> = {
+  encode(message: EventMetadata, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+    if (message.definition !== "") {
+      writer.uint32(18).string(message.definition);
+    }
+    if (message.timeZone !== "") {
+      writer.uint32(26).string(message.timeZone);
+    }
+    if (message.sqlMode !== "") {
+      writer.uint32(34).string(message.sqlMode);
+    }
+    if (message.characterSetClient !== "") {
+      writer.uint32(42).string(message.characterSetClient);
+    }
+    if (message.collationConnection !== "") {
+      writer.uint32(50).string(message.collationConnection);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): EventMetadata {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEventMetadata();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.definition = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.timeZone = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.sqlMode = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.characterSetClient = reader.string();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.collationConnection = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EventMetadata {
+    return {
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      definition: isSet(object.definition) ? globalThis.String(object.definition) : "",
+      timeZone: isSet(object.timeZone) ? globalThis.String(object.timeZone) : "",
+      sqlMode: isSet(object.sqlMode) ? globalThis.String(object.sqlMode) : "",
+      characterSetClient: isSet(object.characterSetClient) ? globalThis.String(object.characterSetClient) : "",
+      collationConnection: isSet(object.collationConnection) ? globalThis.String(object.collationConnection) : "",
+    };
+  },
+
+  toJSON(message: EventMetadata): unknown {
+    const obj: any = {};
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.definition !== "") {
+      obj.definition = message.definition;
+    }
+    if (message.timeZone !== "") {
+      obj.timeZone = message.timeZone;
+    }
+    if (message.sqlMode !== "") {
+      obj.sqlMode = message.sqlMode;
+    }
+    if (message.characterSetClient !== "") {
+      obj.characterSetClient = message.characterSetClient;
+    }
+    if (message.collationConnection !== "") {
+      obj.collationConnection = message.collationConnection;
+    }
+    return obj;
+  },
+
+  create(base?: DeepPartial<EventMetadata>): EventMetadata {
+    return EventMetadata.fromPartial(base ?? {});
+  },
+  fromPartial(object: DeepPartial<EventMetadata>): EventMetadata {
+    const message = createBaseEventMetadata();
+    message.name = object.name ?? "";
+    message.definition = object.definition ?? "";
+    message.timeZone = object.timeZone ?? "";
+    message.sqlMode = object.sqlMode ?? "";
+    message.characterSetClient = object.characterSetClient ?? "";
+    message.collationConnection = object.collationConnection ?? "";
     return message;
   },
 };
@@ -10436,7 +10611,7 @@ export const GetChangeHistoryRequest: MessageFns<GetChangeHistoryRequest> = {
 };
 
 function createBaseListRevisionsRequest(): ListRevisionsRequest {
-  return { parent: "", pageSize: 0, pageToken: "" };
+  return { parent: "", pageSize: 0, pageToken: "", showDeleted: false };
 }
 
 export const ListRevisionsRequest: MessageFns<ListRevisionsRequest> = {
@@ -10449,6 +10624,9 @@ export const ListRevisionsRequest: MessageFns<ListRevisionsRequest> = {
     }
     if (message.pageToken !== "") {
       writer.uint32(26).string(message.pageToken);
+    }
+    if (message.showDeleted !== false) {
+      writer.uint32(32).bool(message.showDeleted);
     }
     return writer;
   },
@@ -10481,6 +10659,13 @@ export const ListRevisionsRequest: MessageFns<ListRevisionsRequest> = {
 
           message.pageToken = reader.string();
           continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.showDeleted = reader.bool();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -10495,6 +10680,7 @@ export const ListRevisionsRequest: MessageFns<ListRevisionsRequest> = {
       parent: isSet(object.parent) ? globalThis.String(object.parent) : "",
       pageSize: isSet(object.pageSize) ? globalThis.Number(object.pageSize) : 0,
       pageToken: isSet(object.pageToken) ? globalThis.String(object.pageToken) : "",
+      showDeleted: isSet(object.showDeleted) ? globalThis.Boolean(object.showDeleted) : false,
     };
   },
 
@@ -10509,6 +10695,9 @@ export const ListRevisionsRequest: MessageFns<ListRevisionsRequest> = {
     if (message.pageToken !== "") {
       obj.pageToken = message.pageToken;
     }
+    if (message.showDeleted !== false) {
+      obj.showDeleted = message.showDeleted;
+    }
     return obj;
   },
 
@@ -10520,6 +10709,7 @@ export const ListRevisionsRequest: MessageFns<ListRevisionsRequest> = {
     message.parent = object.parent ?? "";
     message.pageSize = object.pageSize ?? 0;
     message.pageToken = object.pageToken ?? "";
+    message.showDeleted = object.showDeleted ?? false;
     return message;
   },
 };
@@ -10796,6 +10986,8 @@ function createBaseRevision(): Revision {
     release: "",
     creator: "",
     createTime: undefined,
+    deleter: "",
+    deleteTime: undefined,
     file: "",
     version: "",
     sheet: "",
@@ -10821,29 +11013,35 @@ export const Revision: MessageFns<Revision> = {
     if (message.createTime !== undefined) {
       Timestamp.encode(message.createTime, writer.uint32(34).fork()).join();
     }
+    if (message.deleter !== "") {
+      writer.uint32(42).string(message.deleter);
+    }
+    if (message.deleteTime !== undefined) {
+      Timestamp.encode(message.deleteTime, writer.uint32(50).fork()).join();
+    }
     if (message.file !== "") {
-      writer.uint32(42).string(message.file);
+      writer.uint32(58).string(message.file);
     }
     if (message.version !== "") {
-      writer.uint32(50).string(message.version);
+      writer.uint32(66).string(message.version);
     }
     if (message.sheet !== "") {
-      writer.uint32(58).string(message.sheet);
+      writer.uint32(74).string(message.sheet);
     }
     if (message.sheetSha256 !== "") {
-      writer.uint32(66).string(message.sheetSha256);
+      writer.uint32(82).string(message.sheetSha256);
     }
     if (message.statement !== "") {
-      writer.uint32(74).string(message.statement);
+      writer.uint32(90).string(message.statement);
     }
     if (!message.statementSize.equals(Long.ZERO)) {
-      writer.uint32(80).int64(message.statementSize.toString());
+      writer.uint32(96).int64(message.statementSize.toString());
     }
     if (message.issue !== "") {
-      writer.uint32(90).string(message.issue);
+      writer.uint32(106).string(message.issue);
     }
     if (message.taskRun !== "") {
-      writer.uint32(98).string(message.taskRun);
+      writer.uint32(114).string(message.taskRun);
     }
     return writer;
   },
@@ -10888,52 +11086,66 @@ export const Revision: MessageFns<Revision> = {
             break;
           }
 
-          message.file = reader.string();
+          message.deleter = reader.string();
           continue;
         case 6:
           if (tag !== 50) {
             break;
           }
 
-          message.version = reader.string();
+          message.deleteTime = Timestamp.decode(reader, reader.uint32());
           continue;
         case 7:
           if (tag !== 58) {
             break;
           }
 
-          message.sheet = reader.string();
+          message.file = reader.string();
           continue;
         case 8:
           if (tag !== 66) {
             break;
           }
 
-          message.sheetSha256 = reader.string();
+          message.version = reader.string();
           continue;
         case 9:
           if (tag !== 74) {
             break;
           }
 
-          message.statement = reader.string();
+          message.sheet = reader.string();
           continue;
         case 10:
-          if (tag !== 80) {
+          if (tag !== 82) {
             break;
           }
 
-          message.statementSize = Long.fromString(reader.int64().toString());
+          message.sheetSha256 = reader.string();
           continue;
         case 11:
           if (tag !== 90) {
             break;
           }
 
-          message.issue = reader.string();
+          message.statement = reader.string();
           continue;
         case 12:
-          if (tag !== 98) {
+          if (tag !== 96) {
+            break;
+          }
+
+          message.statementSize = Long.fromString(reader.int64().toString());
+          continue;
+        case 13:
+          if (tag !== 106) {
+            break;
+          }
+
+          message.issue = reader.string();
+          continue;
+        case 14:
+          if (tag !== 114) {
             break;
           }
 
@@ -10954,6 +11166,8 @@ export const Revision: MessageFns<Revision> = {
       release: isSet(object.release) ? globalThis.String(object.release) : "",
       creator: isSet(object.creator) ? globalThis.String(object.creator) : "",
       createTime: isSet(object.createTime) ? fromJsonTimestamp(object.createTime) : undefined,
+      deleter: isSet(object.deleter) ? globalThis.String(object.deleter) : "",
+      deleteTime: isSet(object.deleteTime) ? fromJsonTimestamp(object.deleteTime) : undefined,
       file: isSet(object.file) ? globalThis.String(object.file) : "",
       version: isSet(object.version) ? globalThis.String(object.version) : "",
       sheet: isSet(object.sheet) ? globalThis.String(object.sheet) : "",
@@ -10978,6 +11192,12 @@ export const Revision: MessageFns<Revision> = {
     }
     if (message.createTime !== undefined) {
       obj.createTime = fromTimestamp(message.createTime).toISOString();
+    }
+    if (message.deleter !== "") {
+      obj.deleter = message.deleter;
+    }
+    if (message.deleteTime !== undefined) {
+      obj.deleteTime = fromTimestamp(message.deleteTime).toISOString();
     }
     if (message.file !== "") {
       obj.file = message.file;
@@ -11016,6 +11236,10 @@ export const Revision: MessageFns<Revision> = {
     message.creator = object.creator ?? "";
     message.createTime = (object.createTime !== undefined && object.createTime !== null)
       ? Timestamp.fromPartial(object.createTime)
+      : undefined;
+    message.deleter = object.deleter ?? "";
+    message.deleteTime = (object.deleteTime !== undefined && object.deleteTime !== null)
+      ? Timestamp.fromPartial(object.deleteTime)
       : undefined;
     message.file = object.file ?? "";
     message.version = object.version ?? "";

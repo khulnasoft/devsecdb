@@ -139,9 +139,9 @@ func (s *VCSConnectorService) CreateVCSConnector(ctx context.Context, request *v
 	}
 
 	// Create the webhook.
-	devsecdbEndpointURL := setting.GitopsWebhookUrl
+	bytebaseEndpointURL := setting.GitopsWebhookUrl
 	if devsecdbEndpointURL == "" {
-		devsecdbEndpointURL = setting.ExternalUrl
+		bytebaseEndpointURL = setting.ExternalUrl
 	}
 	webhookEndpointID := fmt.Sprintf("workspaces/%s/projects/%s/vcsConnectors/%s", workspaceID, project.ResourceID, request.VcsConnectorId)
 	webhookID, err := createVCSWebhook(
@@ -150,7 +150,7 @@ func (s *VCSConnectorService) CreateVCSConnector(ctx context.Context, request *v
 		webhookEndpointID,
 		secretToken,
 		vcsConnectorCreate.Payload.ExternalId,
-		devsecdbEndpointURL,
+		bytebaseEndpointURL,
 	)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to create webhook for project %s with error: %v", vcsConnectorCreate.ProjectID, err.Error())

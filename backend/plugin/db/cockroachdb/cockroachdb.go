@@ -224,7 +224,7 @@ func getRDSConnectionConfig(ctx context.Context, conf db.ConnectionConfig) (*pgx
 		return nil, err
 	}
 
-	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s application_name=devsecdb",
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s application_name=bytebase",
 		conf.Host, conf.Port, conf.Username, password, conf.Database,
 	)
 	return pgx.ParseConfig(dsn)
@@ -240,7 +240,7 @@ func getCloudSQLConnectionConfig(ctx context.Context, conf db.ConnectionConfig) 
 		return nil, err
 	}
 
-	dsn := fmt.Sprintf("user=%s database=%s application_name=devsecdb", conf.Username, conf.Database)
+	dsn := fmt.Sprintf("user=%s database=%s application_name=bytebase", conf.Username, conf.Database)
 	config, err := pgx.ParseConfig(dsn)
 	if err != nil {
 		return nil, err
@@ -263,7 +263,7 @@ func guessDSN(baseConnConfig *pgx.ConnConfig, username string) (string, *pgx.Con
 	// Some postgres server default behavior is to use username as the database name if not specified,
 	// while some postgres server explicitly requires the database name to be present (e.g. render.com).
 	guesses := []string{"postgres", username, "template1"}
-	//  dsn+" dbname=devsecdb"
+	//  dsn+" dbname=bytebase"
 	for _, guessDatabase := range guesses {
 		connConfig := *baseConnConfig
 		connConfig.Database = guessDatabase

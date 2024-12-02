@@ -224,25 +224,25 @@ func getVersion(pgDataPath string) (string, error) {
 
 func shouldSwitchUser() (int, int, bool, error) {
 	sameUser := true
-	devsecdbUser, err := user.Current()
+	bytebaseUser, err := user.Current()
 	if err != nil {
 		return 0, 0, true, errors.Wrap(err, "failed to get current user")
 	}
-	// If user runs Devsecdb as root user, we will attempt to run as user `devsecdb`.
+	// If user runs Devsecdb as root user, we will attempt to run as user `bytebase`.
 	// https://www.postgresql.org/docs/14/app-initdb.html
 	if devsecdbUser.Username == "root" {
-		devsecdbUser, err = user.Lookup("devsecdb")
+		bytebaseUser, err = user.Lookup("devsecdb")
 		if err != nil {
-			return 0, 0, false, errors.Errorf("please run Devsecdb as non-root user. You can use the following command to create a dedicated \"devsecdb\" user to run the application: addgroup --gid 113 --system devsecdb && adduser --uid 113 --system devsecdb && adduser devsecdb devsecdb")
+			return 0, 0, false, errors.Errorf("please run Devsecdb as non-root user. You can use the following command to create a dedicated \"bytebase\" user to run the application: addgroup --gid 113 --system devsecdb && adduser --uid 113 --system devsecdb && adduser devsecdb devsecdb")
 		}
 		sameUser = false
 	}
 
-	uid, err := strconv.ParseUint(devsecdbUser.Uid, 10, 32)
+	uid, err := strconv.ParseUint(bytebaseUser.Uid, 10, 32)
 	if err != nil {
 		return 0, 0, false, err
 	}
-	gid, err := strconv.ParseUint(devsecdbUser.Gid, 10, 32)
+	gid, err := strconv.ParseUint(bytebaseUser.Gid, 10, 32)
 	if err != nil {
 		return 0, 0, false, err
 	}

@@ -123,9 +123,9 @@ func TestVCS(t *testing.T) {
 			vcsProviderCreator: fake.NewAzure,
 			vcsType:            v1pb.VCSType_AZURE_DEVOPS,
 			repository: &vcs.Repository{
-				ID:       "devsecdb/project/bb",
-				Name:     "devsecdb/project/bb",
-				FullPath: "devsecdb/project/bb",
+				ID:       "bytebase/project/bb",
+				Name:     "bytebase/project/bb",
+				FullPath: "bytebase/project/bb",
 			},
 			webhookPushEvent: azure.PullRequestEvent{
 				ID:        "mock_event_id",

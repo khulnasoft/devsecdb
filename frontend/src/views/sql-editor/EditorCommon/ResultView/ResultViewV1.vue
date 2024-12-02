@@ -56,8 +56,8 @@
         >
           <template #suffix>
             <RequestQueryButton
-              v-if="!disallowRequestQuery && missingResource"
-              :database-resource="missingResource"
+              v-if="showRequestQueryButton"
+              :database-resource="missingResource!"
             />
             <SyncDatabaseButton
               v-else-if="
@@ -106,6 +106,7 @@ import SyncDatabaseButton from "@/components/DatabaseDetail/SyncDatabaseButton.v
 import { parseStringToResource } from "@/components/GrantRequestPanel/DatabaseResourceForm/common";
 import { Drawer } from "@/components/v2";
 import {
+  hasFeature,
   useAppFeature,
   useConnectionOfCurrentSQLEditorTab,
   usePolicyV1Store,
@@ -119,7 +120,7 @@ import type {
 import { PolicyType } from "@/types/proto/v1/org_policy_service";
 import type { QueryResult } from "@/types/proto/v1/sql_service";
 import { hasWorkspacePermissionV2 } from "@/utils";
-import DetailPanel from "./DetailPanel.vue";
+import DetailPanel from "./DetailPanel";
 import EmptyView from "./EmptyView.vue";
 import ErrorView from "./ErrorView";
 import RequestQueryButton from "./RequestQueryButton.vue";
@@ -188,6 +189,15 @@ const missingResource = computed((): DatabaseResource | undefined => {
     return;
   }
   return parseStringToResource(resource);
+});
+
+const showRequestQueryButton = computed(() => {
+  // Developer self-helped request query is guarded by "Access Control" feature
+  return (
+    hasFeature("bb.feature.access-control") &&
+    !disallowRequestQuery.value &&
+    missingResource.value
+  );
 });
 
 const viewMode = computed((): ViewMode => {

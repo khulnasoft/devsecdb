@@ -80,7 +80,7 @@ func TestFilterChangeHistoryByResources(t *testing.T) {
 	_, err = pgDB.Exec(fmt.Sprintf("DROP DATABASE IF EXISTS %v", databaseName))
 	a.NoError(err)
 
-	_, err = pgDB.Exec("CREATE USER devsecdb WITH ENCRYPTED PASSWORD 'devsecdb'")
+	_, err = pgDB.Exec("CREATE USER devsecdb WITH ENCRYPTED PASSWORD 'bytebase'")
 	a.NoError(err)
 
 	_, err = pgDB.Exec("ALTER USER devsecdb WITH SUPERUSER")

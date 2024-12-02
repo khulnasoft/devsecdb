@@ -16,6 +16,7 @@ import (
 	"github.com/khulnasoft/devsecdb/backend/common/log"
 	"github.com/khulnasoft/devsecdb/backend/component/sheet"
 	"github.com/khulnasoft/devsecdb/backend/plugin/advisor/catalog"
+	"github.com/khulnasoft/devsecdb/backend/plugin/parser/base"
 	storepb "github.com/khulnasoft/devsecdb/proto/generated-go/store"
 )
 
@@ -505,6 +506,8 @@ type SQLReviewCheckContext struct {
 	Context               context.Context
 	PreUpdateBackupDetail *storepb.PreUpdateBackupDetail
 	ClassificationConfig  *storepb.DataClassificationSetting_DataClassificationConfig
+	ListDatabaseNamesFunc base.ListDatabaseNamesFunc
+	InstanceID            string
 
 	// Snowflake specific fields
 	CurrentDatabase string
@@ -586,6 +589,8 @@ func SQLReviewCheck(
 				CurrentDatabase:          checkContext.CurrentDatabase,
 				ClassificationConfig:     checkContext.ClassificationConfig,
 				UsePostgresDatabaseOwner: checkContext.UsePostgresDatabaseOwner,
+				ListDatabaseNamesFunc:    checkContext.ListDatabaseNamesFunc,
+				InstanceID:               checkContext.InstanceID,
 			},
 			statements,
 		)

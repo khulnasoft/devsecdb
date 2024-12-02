@@ -107,7 +107,7 @@ func TestSQLReviewForPostgreSQL(t *testing.T) {
 
 	_, err = pgDB.Exec(fmt.Sprintf("DROP DATABASE IF EXISTS %v", databaseName))
 	a.NoError(err)
-	_, err = pgDB.Exec("CREATE USER devsecdb WITH ENCRYPTED PASSWORD 'devsecdb'")
+	_, err = pgDB.Exec("CREATE USER devsecdb WITH ENCRYPTED PASSWORD 'bytebase'")
 	a.NoError(err)
 	_, err = pgDB.Exec("ALTER USER devsecdb WITH SUPERUSER")
 	a.NoError(err)
@@ -281,7 +281,7 @@ func TestSQLReviewForMySQL(t *testing.T) {
 
 	_, err = mysqlDB.Exec("DROP USER IF EXISTS devsecdb")
 	a.NoError(err)
-	_, err = mysqlDB.Exec("CREATE USER 'devsecdb' IDENTIFIED WITH mysql_native_password BY 'devsecdb'")
+	_, err = mysqlDB.Exec("CREATE USER 'bytebase' IDENTIFIED WITH mysql_native_password BY 'bytebase'")
 	a.NoError(err)
 	_, err = mysqlDB.Exec("GRANT ALTER, ALTER ROUTINE, CREATE, CREATE ROUTINE, CREATE VIEW, DELETE, DROP, EVENT, EXECUTE, INDEX, INSERT, PROCESS, REFERENCES, SELECT, SHOW DATABASES, SHOW VIEW, TRIGGER, UPDATE, USAGE, REPLICATION CLIENT, REPLICATION SLAVE, LOCK TABLES, RELOAD ON *.* to devsecdb")
 	a.NoError(err)

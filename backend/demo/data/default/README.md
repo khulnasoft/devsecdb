@@ -7,7 +7,7 @@ This is the demo data for https://demo.secdb.khulnasoft.com.
 # Dependencies
 
 1. Sample test and prod PG instances running on port `8083` and `8084`.
-1. [GitHub hr-sample](https://github.com/s-devsecdb/hr-sample) to demonstrate GitOps Workflow.
+1. [GitHub hr-sample](https://github.com/s-bytebase/hr-sample) to demonstrate GitOps Workflow.
 1. Enterprise license. https://demo.secdb.khulnasoft.com runs in dev mode, thus it bundles a dev license. If
    you want to run the demo in release mode. You need to supply your own release license.
 
@@ -29,7 +29,7 @@ docker run --init \
   --health-cmd "curl --fail http://localhost:9015/healthz || exit 1" \
   --health-interval 5m \
   --health-timeout 60s \
-  --volume ~/.devsecdb/data:/var/opt/devsecdb \
+  --volume ~/.bytebase/data:/var/opt/devsecdb \
   khulnasoft/devsecdb:3.1.0 \
   --data /var/opt/devsecdb \
   --port 8080 \

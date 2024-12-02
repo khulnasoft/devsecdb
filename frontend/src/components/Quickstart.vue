@@ -85,7 +85,7 @@
     <p class="ml-3 flex font-medium text-white items-center truncate">
       📆
       <a
-        href="https://cal.com/devsecdb/product-walkthrough"
+        href="https://cal.com/bytebase/product-walkthrough"
         target="_blank"
         class="flex underline ml-1"
       >

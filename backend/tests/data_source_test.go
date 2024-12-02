@@ -165,7 +165,7 @@ func TestExternalSecretManager(t *testing.T) {
 	err = pgDB.Ping()
 	a.NoError(err)
 
-	_, err = pgDB.Exec("CREATE USER devsecdb WITH ENCRYPTED PASSWORD 'devsecdb'")
+	_, err = pgDB.Exec("CREATE USER devsecdb WITH ENCRYPTED PASSWORD 'bytebase'")
 	a.NoError(err)
 	_, err = pgDB.Exec("ALTER USER devsecdb WITH SUPERUSER")
 	a.NoError(err)

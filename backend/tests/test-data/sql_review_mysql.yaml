@@ -614,13 +614,13 @@
         }
       }
   run: false
-- statement: DELETE FROM tech_book WHERE id = (SELECT max(id) FROM tech_book WHERE name = 'devsecdb')
+- statement: DELETE FROM tech_book WHERE id = (SELECT max(id) FROM tech_book WHERE name = 'bytebase')
   result:
     - |-
       {
         "status":  "ERROR",
         "title":  "statement.dml-dry-run",
-        "content":  "\"DELETE FROM tech_book WHERE id = (SELECT max(id) FROM tech_book WHERE name = 'devsecdb')\" dry runs failed: Error 1146 (42S02): Table 'testsqlreview.tech_book' doesn't exist",
+        "content":  "\"DELETE FROM tech_book WHERE id = (SELECT max(id) FROM tech_book WHERE name = 'bytebase')\" dry runs failed: Error 1146 (42S02): Table 'testsqlreview.tech_book' doesn't exist",
         "sqlReviewReport":  {
           "line":  1,
           "code":  208,
@@ -633,7 +633,7 @@
       {
         "status":  "WARNING",
         "title":  "statement.affected-row-limit",
-        "content":  "\"DELETE FROM tech_book WHERE id = (SELECT max(id) FROM tech_book WHERE name = 'devsecdb');\" dry runs failed: Error 1146 (42S02): Table 'testsqlreview.tech_book' doesn't exist",
+        "content":  "\"DELETE FROM tech_book WHERE id = (SELECT max(id) FROM tech_book WHERE name = 'bytebase');\" dry runs failed: Error 1146 (42S02): Table 'testsqlreview.tech_book' doesn't exist",
         "sqlReviewReport":  {
           "line":  1,
           "code":  209,

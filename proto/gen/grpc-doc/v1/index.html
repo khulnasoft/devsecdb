@@ -527,6 +527,10 @@
                 </li>
               
                 <li>
+                  <a href="#devsecdb.v1.EventMetadata"><span class="badge">M</span>EventMetadata</a>
+                </li>
+              
+                <li>
                   <a href="#devsecdb.v1.ExtensionMetadata"><span class="badge">M</span>ExtensionMetadata</a>
                 </li>
               
@@ -6744,6 +6748,65 @@ instances/{instance}/databases/{database}/changeHistories/{changeHistory} </p></
 
         
       
+        <h3 id="devsecdb.v1.EventMetadata">EventMetadata</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The name of the event. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>definition</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The schedule of the event. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The time zone of the event. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sql_mode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>character_set_client</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>collation_connection</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="devsecdb.v1.ExtensionMetadata">ExtensionMetadata</h3>
         <p>ExtensionMetadata is the metadata for extensions.</p>
 
@@ -7817,6 +7880,13 @@ When paginating, all other parameters provided to `ListRevisions` must
 match the call that provided the page token. </p></td>
                 </tr>
               
+                <tr>
+                  <td>show_deleted</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -8245,6 +8315,21 @@ Can be empty. </p></td>
                 </tr>
               
                 <tr>
+                  <td>deleter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Format: users/hello@world.com
+Can be empty. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>delete_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Can be empty. </p></td>
+                </tr>
+              
+                <tr>
                   <td>file</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -8470,6 +8555,13 @@ table_name, name, event, timing, action_order. </p></td>
                   <td><a href="#devsecdb.v1.SequenceMetadata">SequenceMetadata</a></td>
                   <td>repeated</td>
                   <td><p>The sequences is the list of sequences in a schema, sorted by name. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>events</td>
+                  <td><a href="#devsecdb.v1.EventMetadata">EventMetadata</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

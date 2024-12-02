@@ -603,7 +603,7 @@ func ExecuteMigrationWithFunc(ctx context.Context, driverCtx context.Context, s 
 		// Don't record schema if the database hasn't existed yet or is schemaless, e.g. MongoDB.
 		// For baseline migration, we also record the live schema to detect the schema drift.
 		// See https://secdb.khulnasoft.com/blog/what-is-database-schema-drift
-		if err := driver.Dump(ctx, &prevSchemaBuf); err != nil {
+		if err := driver.Dump(ctx, &prevSchemaBuf, nil); err != nil {
 			opts.LogSchemaDumpEnd(err.Error())
 			return "", "", err
 		}
@@ -661,7 +661,7 @@ func ExecuteMigrationWithFunc(ctx context.Context, driverCtx context.Context, s 
 	var afterSchemaBuf bytes.Buffer
 	if m.Type.NeedDump() {
 		opts.LogSchemaDumpStart()
-		if err := driver.Dump(ctx, &afterSchemaBuf); err != nil {
+		if err := driver.Dump(ctx, &afterSchemaBuf, nil); err != nil {
 			// We will ignore the dump error if the database is dropped.
 			if strings.Contains(err.Error(), "not found") {
 				return insertedID, "", nil
@@ -689,7 +689,10 @@ func BeginMigration(ctx context.Context, stores *store.Store, m *dbdriver.Migrat
 		migrationHistory := list[0]
 		switch migrationHistory.Status {
 		case dbdriver.Done:
-			return "", common.Errorf(common.MigrationAlreadyApplied, "database %q has already applied version %s, hint: the version might be duplicate, please check the version", m.Database, m.Version.Version)
+			err := common.Errorf(common.MigrationAlreadyApplied, "database %q has already applied version %s, hint: the version might be duplicate, please check the version", m.Database, m.Version.Version)
+			slog.Debug(err.Error())
+			// Force migration
+			return migrationHistory.UID, nil
 		case dbdriver.Pending:
 			err := errors.Errorf("database %q version %s migration is already in progress", m.Database, m.Version.Version)
 			slog.Debug(err.Error())
