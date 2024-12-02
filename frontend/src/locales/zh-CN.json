@@ -275,7 +275,6 @@
     "permissions": "权限",
     "cutover": "切换",
     "baseline": "基线",
-    "project-member": "项目成员",
     "leave-without-saving": "不保存变动？",
     "configure-now": "现在配置",
     "connection": "连接",
@@ -296,7 +295,8 @@
     "encoding": "编码",
     "finish": "完成",
     "title": "标题",
-    "hide": "隐藏"
+    "hide": "隐藏",
+    "text-wrap": "文本折行"
   },
   "error-page": {
     "go-back-home": "回到主页"
@@ -787,11 +787,11 @@
           "description": "控制用户如何变更数据库",
           "issue-mode": {
             "self": "工单模式（管控）",
-            "description": "使用工单来提交，审核，发布，版本化数据库变更。"
+            "description": "使用工单来提交，审核，发布，版本化数据库变更，适合具有访问控制和 CI 和 CD 工作流的团队。"
           },
           "sql-editor-mode": {
             "self": "SQL 编辑器模式（直接）",
-            "description": "使用 SQL 编辑器直接执行数据库变更。适合单人使用或不需要管控的环境。"
+            "description": "使用 SQL 编辑器直接执行数据库变更，适合单人使用或不需要管控的环境。"
           },
           "can-be-changed-later": "此设置以后可以随时更改。",
           "default-view-changed-to-sql-editor": "工作空间的默认视图已更改为 SQL 编辑器。",
@@ -966,6 +966,7 @@
     },
     "release": {
       "new-version-available": "有新版本可更新",
+      "new-version-available-with-tag": "新版本 {tag} 已推出",
       "new-version-content": "新版本 {tag} 正式发布！请根据我们的文档来获取新版本。",
       "not-show-till-next-release": "在下次更新前不要提醒我"
     },
@@ -1006,9 +1007,6 @@
       "member-deactivate": "禁用成员",
       "project-repository-push": "仓库 push 事件",
       "project-database-transfer": "转移数据库",
-      "project-member-create": "添加项目成员",
-      "project-member-delete": "删除项目成员",
-      "project-member-role-update": "变更项目成员角色",
       "pipeline-task-earliest-allowed-time-update": "更新最早允许执行时间",
       "database-recovery-pitr-done": "将数据库恢复到指定时间点",
       "external-approval-rejected": "拒绝外部审批"
@@ -1429,7 +1427,28 @@
     "create": "创建数据库",
     "procedures": "存储过程",
     "partitions": "分区",
-    "packages": "包"
+    "packages": "包",
+    "sequences": "序列",
+    "sequence": {
+      "data-type": "数据类型",
+      "start": "起始值",
+      "min-value": "最小值",
+      "max-value": "最大值",
+      "increment": "增量",
+      "cycle": "循环",
+      "cacheSize": "缓存大小",
+      "lastValue": "最后值"
+    },
+    "triggers": "触发器",
+    "trigger": {
+      "body": "主体",
+      "timing": "时机",
+      "event": "事件",
+      "table-name": "表名"
+    },
+    "schema": {
+      "default": "默认"
+    }
   },
   "instance": {
     "select": "选择实例",
@@ -1478,7 +1497,7 @@
     "web-console": "Web 控制台",
     "connection-info": "连接信息",
     "show-how-to-create": "如何创建",
-    "below-is-an-example-to-create-user-devsecdb-with-password": "创建用户 'devsecdb{'@'}%' 及其密码的例子如下",
+    "below-is-an-example-to-create-user-devsecdbwith-password": "创建用户 'bytebase{'@'}%' 及其密码的例子如下",
     "your_db_pwd": "YOUR_DB_PWD",
     "no-read-only-data-source-warn-for-admin-dba": "该实例没有配置只读连接，请考虑配置。",
     "no-read-only-data-source-warn-for-developer": "该实例没有配置只读连接，请让您的 DBA 配置一个。",
@@ -1656,8 +1675,8 @@
     },
     "statement-execution": {
       "title": "语句执行",
-      "allow-ddl": "允许在 SQL 编辑器中运行 DDL 语句",
-      "allow-dml": "允许在 SQL 编辑器中运行修改数据的 DML 语句"
+      "disallow-ddl": "禁止在 SQL 编辑器中运行 DDL 语句",
+      "disallow-dml": "禁止在 SQL 编辑器中运行修改数据的 DML 语句"
     }
   },
   "quick-start": {
@@ -1900,7 +1919,7 @@
         "duplicated-name": "保密变量名称重复",
         "name-is-required": "变量名必需",
         "name-pattern-mismatch": "秘密名称应该只由大写字母，数字和 _（下划线）组成",
-        "name-cannot-prefix-with-devsecdb": "秘密名称不能以 'DEVSECDB_' 为前缀",
+        "name-cannot-prefix-with-bytebase": "秘密名称不能以 'DEVSECDB_' 为前缀",
         "name-cannot-start-with-number": "秘密名称不能以数字开头"
       },
       "description-placeholder": "输入描述",
@@ -2108,7 +2127,6 @@
       "member-placeholder": "选择用户",
       "manage-member": "管理成员",
       "owner": "@.upper:role.project-owner.self",
-      "developer": "@.upper:role.project-member.self",
       "archive": {
         "title": "归档项目",
         "description": "已归档项目将不再显示。",
@@ -2206,12 +2224,6 @@
     },
     "db-name-template": "租户数据库名称模板",
     "select": "选择项目",
-    "lgtm-check": {
-      "self": "LGTM 检查",
-      "disabled": "跳过 LGTM 检查",
-      "project-member": "需要来自项目成员的 LGTM",
-      "project-owner": "需要来自项目所有者的 LGTM"
-    },
     "successfully-updated-db-name-template": "成功更新数据库名称模板。",
     "all": "所有项目",
     "key-hint": "简短且有辨识度的字母数字组合用于识别该项目。",
@@ -2529,7 +2541,14 @@
     "create-a-worksheet": "新建工作表",
     "select-a-database-to-start": "选择数据库以开始",
     "select-encoding": "选择编码",
+    "redis-command": {
+      "self": "运行 redis 命令",
+      "all-nodes": "所有节点",
+      "single-node": "单节点",
+      "only-for-cluster": "仅适用于集群连接"
+    },
     "result-limit": {
+      "self": "结果限制",
       "n-rows": "{n} 行",
       "rows": "行"
     },
@@ -3129,7 +3148,7 @@
         "create-a-project": "创建了一个项目",
         "create-an-issue": "创建了一个工单",
         "create-a-new-database": "创建了一个数据库",
-        "keep-going-with-devsecdb": "继续使用 Devsecdb！"
+        "keep-going-with-bytebase": "继续使用 Devsecdb！"
       }
     }
   },
@@ -3358,7 +3377,7 @@
           "WORKSPACE_OWNER": "工作空间管理员",
           "WORKSPACE_DBA": "DBA",
           "PROJECT_OWNER": "项目所有者",
-          "PROJECT_MEMBER": "项目成员"
+          "PROJECT_MEMBER": "项目开发者"
         },
         "add": "增加节点",
         "delete": "删除审批节点",
@@ -3510,9 +3529,6 @@
       "select": "选择分类",
       "search": "搜索分类"
     }
-  },
-  "principal": {
-    "select": "选择用户"
   },
   "role": {
     "self": "角色",
@@ -3861,5 +3877,15 @@
   },
   "setup": {
     "self": "设置"
+  },
+  "landing": {
+    "quick-link": {
+      "self": "快捷访问",
+      "manage": "管理快捷访问",
+      "visit-prjects": "访问项目",
+      "visit-issues": "访问工单"
+    },
+    "last-visit": "上次访问",
+    "changelog-for-version": "{version} 的更新日志"
   }
 }

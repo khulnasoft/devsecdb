@@ -275,7 +275,6 @@
     "permissions": "権限",
     "cutover": "スイッチ",
     "baseline": "ベースライン",
-    "project-member": "プロジェクトメンバー",
     "leave-without-saving": "変更を保存していませんか?",
     "configure-now": "今すぐ設定する",
     "connection": "接続する",
@@ -296,7 +295,8 @@
     "encoding": "エンコーディング",
     "finish": "仕上げる",
     "title": "タイトル",
-    "hide": "隠れる"
+    "hide": "隠れる",
+    "text-wrap": "テキストの折り返し"
   },
   "error-page": {
     "go-back-home": "ホームページに戻る"
@@ -787,11 +787,11 @@
           "description": "ユーザーがデータベース スキーマの移行を実行する方法を制御します",
           "issue-mode": {
             "self": "作業モード（ガバナンス）",
-            "description": "データベースの変更をリクエスト、レビュー、展開、バージョン管理するためにIssueを使用します。チームでの協力および本番環境に適しています。"
+            "description": "問題を使用して、データベースの変更をリクエスト、レビュー、ロールアウト、バージョン管理します。これは、アクセス制御と CI および CD ワークフローを備えたチームに適しています。"
           },
           "sql-editor-mode": {
             "self": "SQL エディター モード (直接)",
-            "description": "SQLエディターを使用してデータベースの変更を直接実行します。個人利用および非本番環境に適しています。"
+            "description": "SQL エディターを使用してデータベースの変更を直接実行します。これは、1 人で使用する場合や、監視を必要としない環境に適しています。"
           },
           "can-be-changed-later": "この設定は後でいつでも変更できます。",
           "default-view-changed-to-sql-editor": "ワークスペースのデフォルトのビューが SQL エディターに変更されました。",
@@ -966,6 +966,7 @@
     },
     "release": {
       "new-version-available": "更新する新しいバージョンがあります",
+      "new-version-available-with-tag": "新しいバージョン {tag} が利用可能です",
       "new-version-content": "新しいバージョン {tag} が正式にリリースされました。新しいバージョンを入手するには、ドキュメントに従ってください。",
       "not-show-till-next-release": "次の更新までは通知しないでください"
     },
@@ -1006,9 +1007,6 @@
       "member-deactivate": "メンバーを無効にする",
       "project-repository-push": "リポジトリプッシュイベント",
       "project-database-transfer": "転送データベース",
-      "project-member-create": "プロジェクトメンバーを追加する",
-      "project-member-delete": "プロジェクトメンバーを削除する",
-      "project-member-role-update": "プロジェクトメンバーの役割を変更する",
       "pipeline-task-earliest-allowed-time-update": "許可される最も早い実行時間を更新する",
       "database-recovery-pitr-done": "データベースを指定した時点にリカバリする",
       "external-approval-rejected": "外部の承認を拒否する"
@@ -1429,7 +1427,28 @@
     "create": "データベースの作成",
     "procedures": "ストアドプロシージャ",
     "partitions": "パーティション",
-    "packages": "パッケージ"
+    "packages": "パッケージ",
+    "sequences": "シーケンス",
+    "sequence": {
+      "data-type": "データ型",
+      "start": "開始値",
+      "min-value": "最小値",
+      "max-value": "最大値",
+      "increment": "インクリメント",
+      "cycle": "サイクル",
+      "cacheSize": "キャッシュサイズ",
+      "lastValue": "最後の値"
+    },
+    "triggers": "トリガー",
+    "trigger": {
+      "body": "体",
+      "timing": "タイミング",
+      "event": "イベント",
+      "table-name": "テーブル名"
+    },
+    "schema": {
+      "default": "デフォルト"
+    }
   },
   "instance": {
     "select": "インスタンスの選択",
@@ -1478,7 +1497,7 @@
     "web-console": "Webコンソール",
     "connection-info": "接続情報",
     "show-how-to-create": "作成方法",
-    "below-is-an-example-to-create-user-devsecdb-with-password": "ユーザー「devsecdb{'@'}%」とそのパスワードを作成する例は次のとおりです。",
+    "below-is-an-example-to-create-user-devsecdbwith-password": "ユーザー「bytebase{'@'}%」とそのパスワードを作成する例は次のとおりです。",
     "your_db_pwd": "YOUR_DB_PWD",
     "no-read-only-data-source-warn-for-admin-dba": "このインスタンスは読み取り専用接続で設定されていません。設定を検討してください。",
     "no-read-only-data-source-warn-for-developer": "このインスタンスには読み取り専用接続が設定されていません。設定するように DBA に依頼してください。",
@@ -1656,8 +1675,8 @@
     },
     "statement-execution": {
       "title": "ステートメントの実行",
-      "allow-ddl": "SQLエディタでDDL文を実行できるようにする",
-      "allow-dml": "SQL エディタでデータ変更 DML ステートメントを実行できるようにする"
+      "disallow-ddl": "SQL エディタで DDL ステートメントの実行を禁止する",
+      "disallow-dml": "SQL エディタでデータを変更する DML ステートメントの実行を禁止する"
     }
   },
   "quick-start": {
@@ -1900,7 +1919,7 @@
         "duplicated-name": "シークレット変数名が重複しています",
         "name-is-required": "変数名が必要です",
         "name-pattern-mismatch": "シークレット名は大文字、数字、_ (アンダースコア) のみで設定する必要があります。",
-        "name-cannot-prefix-with-devsecdb": "シークレット名に「DEVSECDB_」という接頭辞を付けることはできません",
+        "name-cannot-prefix-with-bytebase": "シークレット名に「DEVSECDB_」という接頭辞を付けることはできません",
         "name-cannot-start-with-number": "シークレット名を数字で始めることはできません"
       },
       "description-placeholder": "説明を入力してください",
@@ -2108,7 +2127,6 @@
       "member-placeholder": "ユーザーの選択",
       "manage-member": "メンバーの管理",
       "owner": "@.upper:role.project-owner.self",
-      "developer": "@.upper:role.project-member.self",
       "archive": {
         "title": "アーカイブアイテム",
         "description": "アーカイブされたアイテムは表示されなくなります。",
@@ -2206,12 +2224,6 @@
     },
     "db-name-template": "テナントデータベース名のテンプレート",
     "select": "アイテムを選択",
-    "lgtm-check": {
-      "self": "LGTM検査",
-      "disabled": "LGTM チェックをスキップする",
-      "project-member": "プロジェクトメンバーにLGTMを要求",
-      "project-owner": "プロジェクトオーナーからのLGTMの要求"
-    },
     "successfully-updated-db-name-template": "データベース名のテンプレートが正常に更新されました。",
     "all": "全てのアイテム",
     "key-hint": "アイテムを識別するには、短く識別可能な英数字の組み合わせが使用されます。",
@@ -2529,7 +2541,14 @@
     "create-a-worksheet": "新しいワークシートを作成する",
     "select-a-database-to-start": "開始するにはデータベースを選択してください",
     "select-encoding": "エンコーディングの選択",
+    "redis-command": {
+      "self": "redisコマンドを実行する",
+      "all-nodes": "すべてのノード",
+      "single-node": "単一ノード",
+      "only-for-cluster": "クラスタ接続のみ使用可能"
+    },
     "result-limit": {
+      "self": "結果の制限",
       "n-rows": "{n} 行",
       "rows": "行"
     },
@@ -3129,7 +3148,7 @@
         "create-a-project": "プロジェクトを作成しました",
         "create-an-issue": "イシューを作成しました",
         "create-a-new-database": "データベースを作成しました",
-        "keep-going-with-devsecdb": "Devsecdb を使い続けてください。"
+        "keep-going-with-bytebase": "Devsecdb を使い続けてください。"
       }
     }
   },
@@ -3358,7 +3377,7 @@
           "WORKSPACE_OWNER": "ワークスペース管理者",
           "WORKSPACE_DBA": "DBA",
           "PROJECT_OWNER": "プロジェクトオーナー",
-          "PROJECT_MEMBER": "プロジェクトメンバー"
+          "PROJECT_MEMBER": "プロジェクト開発者"
         },
         "add": "ノードの追加",
         "delete": "承認ノードの削除",
@@ -3510,9 +3529,6 @@
       "select": "カテゴリを選択してください",
       "search": "カテゴリを検索する"
     }
-  },
-  "principal": {
-    "select": "ユーザーの選択"
   },
   "role": {
     "self": "役割",
@@ -3861,5 +3877,15 @@
   },
   "setup": {
     "self": "設定"
+  },
+  "landing": {
+    "quick-link": {
+      "self": "クイックリンク",
+      "manage": "クイックリンクを管理する",
+      "visit-prjects": "プロジェクトを訪問",
+      "visit-issues": "訪問に関する問題"
+    },
+    "last-visit": "最終訪問",
+    "changelog-for-version": "{version} の変更履歴"
   }
 }

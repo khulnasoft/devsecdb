@@ -302,7 +302,7 @@ const validate = (detail: Detail) => {
       errors.push(t("database.secret.validation.name-is-required"));
     } else if (name.match(/^DEVSECDB_/)) {
       errors.push(
-        t("database.secret.validation.name-cannot-prefix-with-devsecdb")
+        t("database.secret.validation.name-cannot-prefix-with-bytebase")
       );
     } else if (name.match(/^[0-9]/)) {
       errors.push(

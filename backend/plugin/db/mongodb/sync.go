@@ -261,7 +261,7 @@ func getIndexes(ctx context.Context, collection *mongo.Collection) ([]*storepb.I
 
 // getVersion returns the version of mongod or mongos instance.
 func (driver *Driver) getVersion(ctx context.Context) (string, error) {
-	database := driver.client.Database(devsecdbDefaultDatabase)
+	database := driver.client.Database(bytebaseDefaultDatabase)
 	var commandResult bson.M
 	command := bson.D{{Key: "buildInfo", Value: 1}}
 	if err := database.RunCommand(ctx, command).Decode(&commandResult); err != nil {

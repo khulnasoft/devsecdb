@@ -23,7 +23,7 @@ import (
 	storepb "github.com/khulnasoft/devsecdb/proto/generated-go/store"
 )
 
-// Sample data is from https://github.com/devsecdb/employee-sample-database/tree/main/postgres/dataset_small
+// Sample data is from https://github.com/bytebase/employee-sample-database/tree/main/postgres/dataset_small
 //
 //go:embed sample
 var sampleFS embed.FS

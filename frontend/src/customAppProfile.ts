@@ -1,4 +1,5 @@
-import { computed, watch } from "vue";
+import { computed } from "vue";
+import i18n from "./plugins/i18n";
 import { useActuatorV1Store, useAppFeature, useSettingByName } from "./store";
 import { defaultAppProfile } from "./types";
 import { DatabaseChangeMode } from "./types/proto/v1/setting_service";
@@ -14,12 +15,14 @@ export const overrideAppProfile = () => {
   });
 
   const query = new URLSearchParams(window.location.search);
-  overrideAppFeatures(databaseChangeMode.value, query);
   useCustomTheme(useAppFeature("bb.feature.custom-color-scheme"));
+  overrideAppFeatures(databaseChangeMode.value, query);
 
-  watch(databaseChangeMode, (mode) => {
-    overrideAppFeatures(mode, query);
-  });
+  // Override app language.
+  const lang = query.get("lang");
+  if (lang) {
+    i18n.global.locale.value = lang;
+  }
 };
 
 const overrideAppFeatures = (
@@ -65,7 +68,7 @@ const overrideAppFeatures = (
       "bb.feature.sql-editor.disallow-request-query": true,
       "bb.feature.sql-editor.disallow-sync-schema": true,
       "bb.feature.sql-editor.disallow-export-query-data": true,
-      "bb.feature.sql-editor.hide-devsecdb-logo": true,
+      "bb.feature.sql-editor.hide-devsecdblogo": true,
       "bb.feature.sql-editor.hide-profile": true,
       "bb.feature.sql-editor.hide-readonly-datasource-hint": true,
     });
@@ -96,7 +99,6 @@ const overrideAppFeatures = (
       "bb.feature.hide-trial": true,
       "bb.feature.sql-editor.disallow-edit-schema": true,
       "bb.feature.sql-editor.sql-check-style": "PREFLIGHT",
-      "bb.feature.sql-editor.disallow-export-query-data": true,
       "bb.feature.sql-editor.disallow-request-query": true,
       "bb.feature.databases.operations": new Set([
         "SYNC-SCHEMA",

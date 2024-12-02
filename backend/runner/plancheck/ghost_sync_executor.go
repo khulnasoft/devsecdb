@@ -108,7 +108,7 @@ func (e *GhostSyncExecutor) Run(ctx context.Context, config *storepb.PlanCheckRu
 	defer func() {
 		// Use migrationContext.Uuid as the tls_config_key by convention.
 		// We need to deregister it when gh-ost exits.
-		// https://github.com/devsecdb/gh-ost2/pull/4
+		// https://github.com/bytebase/gh-ost2/pull/4
 		gomysql.DeregisterTLSConfig(migrationContext.Uuid)
 	}()
 

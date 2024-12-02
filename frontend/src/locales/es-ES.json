@@ -275,7 +275,6 @@
     "permissions": "Permisos",
     "cutover": "transición",
     "baseline": "Base",
-    "project-member": "Miembro del proyecto",
     "leave-without-saving": "¿Salir sin ahorrar?",
     "configure-now": "Configurar ahora",
     "connection": "Conexión",
@@ -296,7 +295,8 @@
     "encoding": "Codificación",
     "finish": "Finalizar",
     "title": "Título",
-    "hide": "Esconder"
+    "hide": "Esconder",
+    "text-wrap": "Ajuste de texto"
   },
   "error-page": {
     "go-back-home": "Volver al inicio"
@@ -787,11 +787,11 @@
           "description": "Controla cómo los usuarios realizan migraciones de esquemas de bases de datos",
           "issue-mode": {
             "self": "Modo de emisión (Gobernado)",
-            "description": "Utilice issues para solicitar, revisar, implementar y versionar cambios en la base de datos."
+            "description": "Utilice el problema para solicitar, revisar, implementar y versionar cambios en la base de datos, adecuado para equipos con control de acceso y flujo de trabajo de CI y CD."
           },
           "sql-editor-mode": {
             "self": "Modo de edición SQL (Directo)",
-            "description": "Utilice el Editor SQL para ejecutar cambios en la base de datos directamente."
+            "description": "Utilice el Editor SQL para ejecutar cambios en la base de datos directamente, adecuado para uso de una sola persona o entornos que no requieren supervisión."
           },
           "can-be-changed-later": "Utilice el Editor SQL para ejecutar cambios en la base de datos directamente. Adecuado para particulares.",
           "default-view-changed-to-sql-editor": "La vista predeterminada del espacio de trabajo se ha cambiado al Editor SQL.",
@@ -966,6 +966,7 @@
     },
     "release": {
       "new-version-available": "Nueva versión disponible",
+      "new-version-available-with-tag": "La nueva versión {tag} está disponible",
       "new-version-content": "¡La nueva versión {tag} está disponible ahora! Consulte nuestra documentación para la instalación.",
       "not-show-till-next-release": "No mostrar esto hasta la próxima versión"
     },
@@ -1006,9 +1007,6 @@
       "member-deactivate": "desactivar miembro",
       "project-repository-push": "evento de push del repositorio del proyecto",
       "project-database-transfer": "transferencia de base de datos",
-      "project-member-create": "agregar miembro del proyecto",
-      "project-member-delete": "eliminar miembro del proyecto",
-      "project-member-role-update": "cambiar el rol del miembro del proyecto",
       "pipeline-task-earliest-allowed-time-update": "actualizar tiempo de inicio temprano",
       "database-recovery-pitr-done": "restaurar base de datos a un punto en el tiempo",
       "external-approval-rejected": "rechazo de aprobación externa"
@@ -1429,7 +1427,28 @@
     "create": "Crear base de datos",
     "procedures": "Trámites",
     "partitions": "Particiones",
-    "packages": "Paquetes"
+    "packages": "Paquetes",
+    "sequences": "Secuencias",
+    "sequence": {
+      "data-type": "tipo de datos",
+      "start": "Valor inicial",
+      "min-value": "valor mínimo",
+      "max-value": "valor máximo",
+      "increment": "Incremento",
+      "cycle": "Ciclo",
+      "cacheSize": "Tamaño de caché",
+      "lastValue": "Último valor"
+    },
+    "triggers": "Desencadenantes",
+    "trigger": {
+      "body": "Cuerpo",
+      "timing": "Momento",
+      "event": "Evento",
+      "table-name": "Nombre de la tabla"
+    },
+    "schema": {
+      "default": "Por defecto"
+    }
   },
   "instance": {
     "select": "Seleccionar instancia",
@@ -1478,7 +1497,7 @@
     "web-console": "Consola web",
     "connection-info": "Información de conexión",
     "show-how-to-create": "Mostrar cómo crear",
-    "below-is-an-example-to-create-user-devsecdb-with-password": "A continuación se muestra un ejemplo para crear el usuario 'devsecdb {'@'}%' con contraseña",
+    "below-is-an-example-to-create-user-devsecdbwith-password": "A continuación se muestra un ejemplo para crear el usuario 'devsecdb {'@'}%' con contraseña",
     "your_db_pwd": "SU_DB_PWD",
     "no-read-only-data-source-warn-for-admin-dba": "La instancia no ha configurado una conexión de solo lectura, por favor considere agregar una.",
     "no-read-only-data-source-warn-for-developer": "La instancia no ha configurado una conexión de solo lectura, solicite a su DBA que agregue una.",
@@ -1517,7 +1536,7 @@
       },
       "create-user-example": {
         "snowflake": {
-          "template": "A continuación se muestra un ejemplo para crear el usuario 'devsecdb' con la contraseña {password} para {warehouse} y otorgar al usuario los privilegios necesarios."
+          "template": "A continuación se muestra un ejemplo para crear el usuario 'bytebase' con la contraseña {password} para {warehouse} y otorgar al usuario los privilegios necesarios."
         },
         "mysql": {
           "template": "A continuación se muestra un ejemplo para crear el usuario {user}{'@'}% con la contraseña {password} y otorgarle al usuario los privilegios necesarios."
@@ -1656,8 +1675,8 @@
     },
     "statement-execution": {
       "title": "Ejecución de la declaración",
-      "allow-ddl": "Permitir la ejecución de sentencias DDL en el editor SQL",
-      "allow-dml": "Permitir ejecutar sentencias DML que modifiquen datos en el Editor SQL"
+      "disallow-ddl": "No permitir la ejecución de sentencias DDL en el editor SQL",
+      "disallow-dml": "No permitir la ejecución de instrucciones DML que modifiquen datos en el Editor SQL"
     }
   },
   "quick-start": {
@@ -1900,7 +1919,7 @@
         "duplicated-name": "Nombre secreto duplicado",
         "name-is-required": "Se requiere nombre secreto",
         "name-pattern-mismatch": "El nombre secreto debe contener solo letras mayúsculas, dígitos o _ (guion bajo)",
-        "name-cannot-prefix-with-devsecdb": "El nombre secreto no puede tener el prefijo 'DEVSECDB_'",
+        "name-cannot-prefix-with-bytebase": "El nombre secreto no puede tener el prefijo 'DEVSECDB_'",
         "name-cannot-start-with-number": "El nombre secreto no puede comenzar con un número"
       },
       "description-placeholder": "Ingrese descripción",
@@ -2108,7 +2127,6 @@
       "member-placeholder": "Seleccionar usuario",
       "manage-member": "Administrar miembros",
       "owner": "@.upper:role.project-owner.self",
-      "developer": "@.upper:role.project-member.self",
       "archive": {
         "title": "Archivar proyecto",
         "description": "Proyectos archivados no se mostrarán.",
@@ -2206,12 +2224,6 @@
     },
     "db-name-template": "Plantilla de nombre de base de datos del inquilino",
     "select": "Seleccionar Proyecto",
-    "lgtm-check": {
-      "self": "Revisión de LGTM",
-      "disabled": "Omitir revisión de LGTM",
-      "project-member": "Requerir LGTM de los miembros del proyecto",
-      "project-owner": "Requerir LGTM del propietario del proyecto"
-    },
     "successfully-updated-db-name-template": "Plantilla de nombre de base de datos actualizada con éxito.",
     "all": "Todos los proyectos",
     "key-hint": "Letras alfanuméricas descriptivas cortas para identificar este proyecto..",
@@ -2529,7 +2541,14 @@
     "create-a-worksheet": "Crear una hoja de trabajo",
     "select-a-database-to-start": "Seleccione una base de datos para comenzar",
     "select-encoding": "Seleccionar codificación",
+    "redis-command": {
+      "self": "Ejecute el comando redis en",
+      "all-nodes": "Todos los nodos",
+      "single-node": "Nodo único",
+      "only-for-cluster": "Sólo disponible para conexión de clúster"
+    },
     "result-limit": {
+      "self": "Límite de resultados",
       "n-rows": "{n} filas",
       "rows": "filas"
     },
@@ -3129,7 +3148,7 @@
         "create-a-project": "Crear un proyecto",
         "create-an-issue": "Crear una incidencia",
         "create-a-new-database": "Crear una nueva base de datos",
-        "keep-going-with-devsecdb": "¡Continúa con Devsecdb!"
+        "keep-going-with-bytebase": "¡Continúa con Devsecdb!"
       }
     }
   },
@@ -3358,7 +3377,7 @@
           "WORKSPACE_OWNER": "Administrador del espacio de trabajo",
           "WORKSPACE_DBA": "DBA",
           "PROJECT_OWNER": "Propietario del proyecto",
-          "PROJECT_MEMBER": "Miembro del proyecto"
+          "PROJECT_MEMBER": "Desarrollador del proyecto"
         },
         "add": "Agregar nodo",
         "delete": "Eliminar nodo de aprobación",
@@ -3510,9 +3529,6 @@
       "select": "Seleccionar clasificación",
       "search": "Clasificación de búsqueda"
     }
-  },
-  "principal": {
-    "select": "Seleccionar usuario"
   },
   "role": {
     "self": "Rol",
@@ -3861,5 +3877,15 @@
   },
   "setup": {
     "self": "Configuración"
+  },
+  "landing": {
+    "quick-link": {
+      "self": "Enlace rápido",
+      "manage": "Administrar enlace rápido",
+      "visit-prjects": "Visitar Proyectos",
+      "visit-issues": "Problemas de visita"
+    },
+    "last-visit": "Última visita",
+    "changelog-for-version": "Registro de cambios para {version}"
   }
 }

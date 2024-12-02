@@ -204,7 +204,7 @@
         }
       }
   run: false
-- statement: DELETE FROM t WHERE a = (SELECT max(id) FROM "user" WHERE name = 'devsecdb')
+- statement: DELETE FROM t WHERE a = (SELECT max(id) FROM "user" WHERE name = 'bytebase')
   result:
     - |-
       {

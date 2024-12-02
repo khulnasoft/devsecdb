@@ -1754,7 +1754,7 @@ func isSecretValid(secret *storepb.SecretItem) error {
 	}
 
 	// Names must not start with the 'DEVSECDB_' prefix.
-	devsecdbCaseInsensitivePrefixRegexp := regexp.MustCompile(`(?i)^DEVSECDB_`)
+	bytebaseCaseInsensitivePrefixRegexp := regexp.MustCompile(`(?i)^DEVSECDB_`)
 	if devsecdbCaseInsensitivePrefixRegexp.MatchString(secret.Name) {
 		return errors.Errorf("invalid secret name: %s, name must not start with the 'DEVSECDB_' prefix", secret.Name)
 	}

@@ -5,7 +5,7 @@
 ## TL;DR
 
 ```bash
-$ helm repo add devsecdb-repo https://devsecdb.github.io/devsecdb
+$ helm repo add devsecdb-repo https://khulnasoft.github.io/devsecdb
 $ helm repo update
 $ helm -n <YOUR_NAMESPACE> \
 --set "devsecdb.option.port"={PORT} \

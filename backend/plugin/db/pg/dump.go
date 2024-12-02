@@ -21,10 +21,10 @@ import (
 )
 
 // Dump dumps the database.
-func (driver *Driver) Dump(ctx context.Context, out io.Writer) error {
+func (driver *Driver) Dump(ctx context.Context, out io.Writer, _ *storepb.DatabaseSchemaMetadata) error {
 	// We don't support pg_dump for CloudSQL, because pg_dump not support IAM & instance name for authentication.
 	// To dump schema for CloudSQL, you need to run the cloud-sql-proxy with IAM to get the host and port.
-	// Learn more: https://linear.app/devsecdb/issue/BYT-5401/support-iam-authentication-for-gcp-and-aws
+	// Learn more: https://linear.app/bytebase/issue/BYT-5401/support-iam-authentication-for-gcp-and-aws
 	if driver.config.AuthenticationType == storepb.DataSourceOptions_GOOGLE_CLOUD_SQL_IAM {
 		return nil
 	}

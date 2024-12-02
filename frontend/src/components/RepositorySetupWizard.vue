@@ -94,7 +94,7 @@ const state = reactive<LocalState>({
     vcs: VCSProvider.fromPartial({}),
     repositoryInfo: VCSRepository.fromPartial({}),
     repositoryConfig: {
-      baseDirectory: "/devsecdb",
+      baseDirectory: "/bytebase",
       branch: "main",
       resourceId: "",
       databaseGroup: "",

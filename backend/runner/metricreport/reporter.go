@@ -40,9 +40,9 @@ const (
 	// identifyTraitForVersion is the trait key for Devsecdb version.
 	identifyTraitForVersion = "version"
 	// devsecdbServiceModeSaaS is the mode for Devsecdb SaaS.
-	devsecdbServiceModeSaaS = "saas"
+	bytebaseServiceModeSaaS = "saas"
 	// devsecdbServiceModeSelfhost is the mode for Devsecdb self-host.
-	devsecdbServiceModeSelfhost = "self-host"
+	bytebaseServiceModeSelfhost = "self-host"
 )
 
 // Reporter is the metric reporter.

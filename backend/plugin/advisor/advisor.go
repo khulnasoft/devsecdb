@@ -13,6 +13,7 @@ import (
 
 	"github.com/khulnasoft/devsecdb/backend/common/log"
 	"github.com/khulnasoft/devsecdb/backend/plugin/advisor/catalog"
+	"github.com/khulnasoft/devsecdb/backend/plugin/parser/base"
 	storepb "github.com/khulnasoft/devsecdb/proto/generated-go/store"
 )
 
@@ -51,6 +52,8 @@ type Context struct {
 	ChangeType            storepb.PlanCheckRunConfig_ChangeDatabaseType
 	PreUpdateBackupDetail *storepb.PreUpdateBackupDetail
 	ClassificationConfig  *storepb.DataClassificationSetting_DataClassificationConfig
+	ListDatabaseNamesFunc base.ListDatabaseNamesFunc
+	InstanceID            string
 
 	// SQL review rule special fields.
 	AST     any
