@@ -1,9 +1,10 @@
 import { computed } from "vue";
 import { useCurrentUserV1 } from "@/store";
+import { projectNamePrefix } from "@/store/modules/v1/common";
 import { useDynamicLocalStorage } from "@/utils";
 
 const STORAGE_KEY = "bb.space.recently_visited";
-const MAX_HISTORY = 3;
+const MAX_HISTORY = 10;
 
 export function useRecentVisit() {
   const currentUser = useCurrentUserV1();
@@ -20,6 +21,15 @@ export function useRecentVisit() {
     return recentVisit.value[0];
   });
 
+  const lastVisitProjectPath = computed(() => {
+    for (const visit of recentVisit.value) {
+      if (visit.startsWith(`/${projectNamePrefix}`)) {
+        return visit;
+      }
+    }
+    return "";
+  });
+  
   const remove = (path: string) => {
     const index = recentVisit.value.findIndex((item) => {
       // We treat the two URLs "the same" when their urls'
@@ -54,6 +64,7 @@ export function useRecentVisit() {
     remove,
     record,
     lastVisit,
+    lastVisitProjectPath,
   };
 }
 
