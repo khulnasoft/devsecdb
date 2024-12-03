@@ -6,7 +6,7 @@
       </label>
       <FeatureBadge feature="bb.feature.access-control" />
     </div>
-    <div class="w-full flex flex-col gap-4">
+    <div>
       <div class="w-full inline-flex items-center gap-x-2">
         <Switch
           :value="disableCopyDataPolicy"
@@ -32,9 +32,14 @@
         </div>
         <div v-if="adminDataSourceQueruRestrictionEnabled" class="ml-12">
           <NRadioGroup
-            :value="adminDataSourceQueruRestriction"
+            :value="adminDataSourceQueryRestriction"
             :disabled="!allowUpdatePolicy || !hasAccessControlFeature"
-            @update:value="updateAdminDataSourceQueryRestrctionPolicy"
+            @update:value="
+              (value) =>
+                updateAdminDataSourceQueryRestrctionPolicy({
+                  adminDataSourceRestriction: value,
+                })
+            "
           >
             <NRadio
               class="w-full"
@@ -72,13 +77,14 @@
       <label>
         {{ $t("environment.statement-execution.title") }}
       </label>
+      <FeatureBadge feature="bb.feature.access-control" />
     </div>
     <div>
       <div class="w-full inline-flex items-center gap-x-2">
         <Switch
           :value="!dataSourceQueryPolicy?.disallowDdl"
           :text="true"
-          :disabled="!allowUpdatePolicy"
+          :disabled="!allowUpdatePolicy || !hasAccessControlFeature"
           @update:value="
             (on: boolean) => {
               updateAdminDataSourceQueryRestrctionPolicy({ disallowDdl: !on });
@@ -93,7 +99,7 @@
         <Switch
           :value="!dataSourceQueryPolicy?.disallowDml"
           :text="true"
-          :disabled="!allowUpdatePolicy"
+          :disabled="!allowUpdatePolicy || !hasAccessControlFeature"
           @update:value="
             (on: boolean) => {
               updateAdminDataSourceQueryRestrctionPolicy({ disallowDml: !on });
@@ -164,17 +170,17 @@ const dataSourceQueryPolicy = computed(() => {
   })?.dataSourceQueryPolicy;
 });
 
-const adminDataSourceQueruRestriction = computed(() => {
+const adminDataSourceQueryRestriction = computed(() => {
   return dataSourceQueryPolicy.value?.adminDataSourceRestriction;
 });
 
 const adminDataSourceQueruRestrictionEnabled = computed(() => {
   return (
-    adminDataSourceQueruRestriction.value &&
+    adminDataSourceQueryRestriction.value &&
     [
       DataSourceQueryPolicy_Restriction.DISALLOW,
       DataSourceQueryPolicy_Restriction.FALLBACK,
-    ].includes(adminDataSourceQueruRestriction.value)
+    ].includes(adminDataSourceQueryRestriction.value)
   );
 });
 
