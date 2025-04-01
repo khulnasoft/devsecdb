@@ -1,6 +1,7 @@
 module github.com/khulnasoft/devsecdb
 
 go 1.23.2
+toolchain go1.24.1
 
 // workaround mssql-docker default TLS cert negative serial number problem
 // https://github.com/microsoft/mssql-docker/issues/895
@@ -11,7 +12,7 @@ require (
 	cloud.google.com/go/cloudsqlconn v1.13.0
 	cloud.google.com/go/secretmanager v1.14.2
 	cloud.google.com/go/spanner v1.71.0
-	gitee.com/chunanyong/dm v1.8.16
+	gitee.com/chunanyong/dm v1.8.19
 	github.com/ClickHouse/clickhouse-go/v2 v2.30.0
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr4-go/antlr/v4 v4.13.1
