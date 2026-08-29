@@ -84,7 +84,7 @@ require (
 	github.com/zeebo/xxh3 v1.0.2
 	go.mongodb.org/mongo-driver v1.17.1
 	go.uber.org/multierr v1.11.0
-	golang.org/x/crypto v0.28.0
+	golang.org/x/crypto v0.52.0
 	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c
 	golang.org/x/oauth2 v0.23.0
 	golang.org/x/text v0.19.0
